@@ -1,15 +1,45 @@
-import { MouseEventHandler, useState } from "react";
+import { FormEvent, useState, useEffect } from "react";
 import "./todoform.css";
 
 export function TodoForm(): JSX.Element {
   const [todo, setTodo] = useState("");
   const [owner, setOwner] = useState("");
 
+  const [myArray, setMyArray] = useState<object[]>([]);
+  const [id, updateId] = useState<number>(1);
+
+  useEffect(() => {
+    console.log(myArray);
+  }, [myArray]);
+
+  function handleSubmit(e: FormEvent) {
+    e.preventDefault();
+    setMyArray((prevArray) => [
+      ...prevArray,
+      { id: id, text: todo, author: owner },
+    ]);
+    updateId(id + 1);
+  }
+
+  // function handleSubmit(e: FormEvent) {
+  //   e.preventDefault();
+  //   if (myArray?.length === 0) {
+  //     setMyArray([{ id: id, text: todo, author: owner }]);
+  //   } else {
+  //     setMyArray((prevArray) => [
+  //       ...prevArray,
+  //       { id: id, text: todo, author: owner },
+  //     ]);
+  //   }
+  //   updateId(id + 1);
+  //   console.log(myArray);
+  // }
+
   return (
     <>
       <div className="form-container">
         <h3>Input todo item into the list:</h3>
-        <form className="todo-form">
+        <form className="todo-form" onSubmit={handleSubmit}>
           <span>
             <label>Todo:</label>
             <br />
