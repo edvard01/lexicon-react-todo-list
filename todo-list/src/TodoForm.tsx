@@ -1,11 +1,18 @@
 import { FormEvent, useState, useEffect } from "react";
 import "./todoform.css";
+import { List } from "./List";
+
+interface IListItem {
+  id: number;
+  text: string;
+  author: string;
+}
 
 export function TodoForm(): JSX.Element {
   const [todo, setTodo] = useState("");
   const [owner, setOwner] = useState("");
 
-  const [myArray, setMyArray] = useState<object[]>([]);
+  const [myArray, setMyArray] = useState<IListItem[]>([]);
   const [id, updateId] = useState<number>(1);
 
   useEffect(() => {
@@ -60,6 +67,13 @@ export function TodoForm(): JSX.Element {
           </span>
           <button type="submit">Add to list</button>
         </form>
+      </div>
+      <div>
+        {myArray.length !== 0 ? (
+          <List listContent={myArray} />
+        ) : (
+          <p>list goes here</p>
+        )}
       </div>
     </>
   );
