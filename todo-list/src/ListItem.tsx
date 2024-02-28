@@ -35,7 +35,7 @@ export function ListItem({
               onChange={(e) => setTodo(e.target.value)}
             />
           ) : (
-            <p className="todo-text">{text}</p>
+            <p className="todo-text">{todo}</p>
           )}
         </span>
         <p className="owner-text">{owner}</p>
