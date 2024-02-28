@@ -68,7 +68,7 @@ export function TodoForm(): JSX.Element {
           <button type="submit">Add to list</button>
         </form>
       </div>
-      <div>
+      <div className="list-container">
         {myArray.length !== 0 ? (
           <List listContent={myArray} />
         ) : (
