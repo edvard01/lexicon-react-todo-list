@@ -19,6 +19,13 @@
   flex-direction: column;
   align-items: left;
 }
+.list ul li .text-area input {
+  height: 26px;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  border: 0.1rem solid black;
+}
 
 .list ul li .text-area .todo-text {
   font-size: 22px;
@@ -37,12 +44,24 @@
   display: flex;
 }
 
-.list ul li .nav-btn-area #edit {
+.list ul li .nav-btn-area .edit {
   padding: 5px;
   background-color: orange;
   border: none;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
+  height: 40px;
+}
+
+.list ul li .editing {
+  padding: 5px;
+  background-color: green;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
 }
 
 .list ul li .nav-btn-area #delete {
@@ -51,4 +70,35 @@
   border: none;
   border-radius: 5px;
   color: white;
+  cursor: pointer;
+  height: 40px;
+}
+
+.list ul li .nav-btn-area .direction-btns {
+  display: flex;
+  flex-direction: column;
+}
+
+.list ul li .nav-btn-area .direction-btns button {
+  height: 20px;
+  padding: 0;
+  border: none;
+
+  background-color: green;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.list ul li .nav-btn-area .direction-btns button:hover {
+  background-color: darkgreen;
+}
+
+.list ul li .nav-btn-area .direction-btns #up {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.list ul li .nav-btn-area .direction-btns #down {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

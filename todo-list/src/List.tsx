@@ -1,4 +1,5 @@
 import "./list.css";
+import { ListItem } from "./ListItem";
 
 interface IList {
   listContent: IListItem[];
@@ -17,18 +18,7 @@ export function List({ listContent }: IList): JSX.Element {
         <ul>
           {listContent.map((item, index) => (
             <li key={index}>
-              <span className="text-area">
-                <p className="todo-text">{item.text}</p>
-                <p className="owner-text">{item.author}</p>
-              </span>
-              <span className="nav-btn-area">
-                <button id="edit">
-                  <span className="material-symbols-outlined">edit</span>
-                </button>
-                <button id="delete">
-                  <span className="material-symbols-outlined">delete</span>
-                </button>
-              </span>
+              <ListItem todo={item.text} owner={item.author} id={item.id} />
             </li>
           ))}
         </ul>
