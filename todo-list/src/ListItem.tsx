@@ -4,14 +4,25 @@ interface IListItem {
   todo: string;
   owner: string;
   id: number;
+  moveListItem: (id: number, move: string) => void;
 }
 
-export function ListItem({ todo, owner, id }: IListItem): JSX.Element {
+export function ListItem({
+  todo,
+  owner,
+  id,
+  moveListItem,
+}: IListItem): JSX.Element {
   const [isEditing, setEditing] = useState(false);
   const [text, setTodo] = useState(todo);
 
   const handleOnClick = () => {
     setEditing((preVal) => !preVal);
+  };
+
+  const handleMoveItemClick = (move: string) => {
+    moveListItem(id, move);
+    setTodo(todo);
   };
   return (
     <>
@@ -39,10 +50,18 @@ export function ListItem({ todo, owner, id }: IListItem): JSX.Element {
           <span className="material-symbols-outlined">delete</span>
         </button>
         <span className="direction-btns">
-          <button id="up" className="material-symbols-outlined">
+          <button
+            id="up"
+            className="material-symbols-outlined"
+            onClick={() => handleMoveItemClick("up")}
+          >
             expand_less
           </button>
-          <button id="down" className="material-symbols-outlined">
+          <button
+            id="down"
+            className="material-symbols-outlined"
+            onClick={() => handleMoveItemClick("down")}
+          >
             expand_more
           </button>
         </span>
