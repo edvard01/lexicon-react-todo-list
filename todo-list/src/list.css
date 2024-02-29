@@ -11,7 +11,10 @@
   display: flex;
   justify-content: space-between;
 
-  border-bottom: 0.1rem solid black;
+  background-color: rgb(19, 132, 150);
+  padding: 15px;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px black;
 }
 
 .list ul li .text-area {

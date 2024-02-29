@@ -5,6 +5,7 @@ interface IListItem {
   owner: string;
   id: number;
   moveListItem: (id: number, move: string) => void;
+  deleteListItem: (id: number) => void;
 }
 
 export function ListItem({
@@ -12,6 +13,7 @@ export function ListItem({
   owner,
   id,
   moveListItem,
+  deleteListItem,
 }: IListItem): JSX.Element {
   const [isEditing, setEditing] = useState(false);
   const [text, setTodo] = useState(todo);
@@ -24,29 +26,19 @@ export function ListItem({
     moveListItem(id, move);
     setTodo(todo);
   };
+
+  const handleDelete = (id: number) => {
+    deleteListItem(id);
+    console.log(id);
+  };
   return (
     <>
       <span className="text-area">
-        <span>
-          {isEditing ? (
-            <input
-              type="text"
-              value={text}
-              onChange={(e) => setTodo(e.target.value)}
-            />
-          ) : (
-            <p className="todo-text">{todo}</p>
-          )}
-        </span>
+        <p className="todo-text">{todo}</p>
         <p className="owner-text">{owner}</p>
       </span>
       <span className="nav-btn-area">
-        <button id="edit" className={isEditing ? "editing" : "edit"}>
-          <span onClick={handleOnClick} className="material-symbols-outlined">
-            edit
-          </span>
-        </button>
-        <button id="delete">
+        <button id="delete" onClick={() => handleDelete(id)}>
           <span className="material-symbols-outlined">delete</span>
         </button>
         <span className="direction-btns">

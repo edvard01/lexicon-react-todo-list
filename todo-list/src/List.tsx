@@ -4,6 +4,7 @@ import { ListItem } from "./ListItem";
 interface IList {
   listContent: IListItem[];
   moveListItem: (id: number, move: string) => void;
+  deleteListItem: (id: number) => void;
 }
 
 interface IListItem {
@@ -12,7 +13,11 @@ interface IListItem {
   author: string;
 }
 
-export function List({ listContent, moveListItem }: IList): JSX.Element {
+export function List({
+  listContent,
+  moveListItem,
+  deleteListItem,
+}: IList): JSX.Element {
   return (
     <>
       <div className="list">
@@ -24,6 +29,7 @@ export function List({ listContent, moveListItem }: IList): JSX.Element {
                 owner={item.author}
                 id={item.id}
                 moveListItem={moveListItem}
+                deleteListItem={deleteListItem}
               />
             </li>
           ))}

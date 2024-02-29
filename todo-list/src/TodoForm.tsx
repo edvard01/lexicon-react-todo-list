@@ -15,10 +15,6 @@ export function TodoForm(): JSX.Element {
   const [myArray, setMyArray] = useState<IListItem[]>([]);
   const [id, updateId] = useState<number>(1);
 
-  useEffect(() => {
-    console.log(myArray);
-  }, [myArray]);
-
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
     setMyArray((prevArray) => [
@@ -27,35 +23,6 @@ export function TodoForm(): JSX.Element {
     ]);
     updateId(id + 1);
   }
-
-  // function moveListItem(id: number, move: number) {
-  //   console.log("MOVELIST WORKs");
-  //   console.log(myArray);
-  //   let index: number = 0;
-  //   let counter: number = 0;
-  //   myArray.forEach((element) => {
-  //     if (element.id === id) {
-  //       index = counter;
-  //     }
-  //     counter++;
-  //   });
-  //   console.log(index);
-
-  //   if (index <= 0 && move === -1) {
-  //     console.log("failed");
-  //     return;
-  //   } else if (index >= myArray.length - 1 && move === 1) {
-  //     console.log("failed");
-  //     return;
-  //   }
-  //   const newArray: IListItem[] = [...myArray];
-
-  //   const tempObject: IListItem = newArray[index];
-  //   newArray[index] = newArray[index + move];
-  //   newArray[index + move] = tempObject;
-  //   setMyArray(newArray);
-  //   console.log(newArray);
-  // }
 
   function moveListItem(id: number, move: string) {
     let index: number = -1;
@@ -81,14 +48,32 @@ export function TodoForm(): JSX.Element {
         newArray[index] = newArray[index - 1];
         newArray[index - 1] = tempObject;
         setMyArray(newArray);
-        console.log(newArray);
       } else if (move === "down") {
         const tempObject: IListItem = newArray[index];
         newArray[index] = newArray[index + 1];
         newArray[index + 1] = tempObject;
         setMyArray(newArray);
-        console.log(newArray);
       }
+    }
+  }
+
+  function deleteListItem(id: number) {
+    console.log("TodoForm id", id);
+    let counter: number = 0;
+    let index: number = -1;
+    myArray.forEach((element) => {
+      if (element.id === id) {
+        index = counter;
+      }
+      counter++;
+    });
+
+    if (index !== -1) {
+      const newArray: IListItem[] = [...myArray];
+      newArray.splice(index, 1);
+      setMyArray(newArray);
+    } else {
+      console.log("Index cant be found");
     }
   }
 
@@ -120,9 +105,13 @@ export function TodoForm(): JSX.Element {
       </div>
       <div className="list-container">
         {myArray.length !== 0 ? (
-          <List listContent={myArray} moveListItem={moveListItem} />
+          <List
+            listContent={myArray}
+            moveListItem={moveListItem}
+            deleteListItem={deleteListItem}
+          />
         ) : (
-          <p>list goes here</p>
+          <p></p>
         )}
       </div>
     </>
