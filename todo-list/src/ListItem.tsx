@@ -6,6 +6,7 @@ interface IListItem {
   id: number;
   moveListItem: (id: number, move: string) => void;
   deleteListItem: (id: number) => void;
+  changeTodo: (newTodo: string, id: number) => void;
 }
 
 export function ListItem({
@@ -14,11 +15,18 @@ export function ListItem({
   id,
   moveListItem,
   deleteListItem,
+  changeTodo,
 }: IListItem): JSX.Element {
   const [isEditing, setEditing] = useState(false);
   const [text, setTodo] = useState(todo);
 
   const handleOnClick = () => {
+    if (isEditing) {
+      console.log("meow handleonclick");
+      changeTodo(text, id);
+    } else {
+      setTodo(todo);
+    }
     setEditing((preVal) => !preVal);
   };
 
@@ -34,10 +42,32 @@ export function ListItem({
   return (
     <>
       <span className="text-area">
-        <p className="todo-text">{todo}</p>
+        <span>
+          {isEditing ? (
+            <span>
+              <input
+                type="text"
+                value={text}
+                onChange={(e) => setTodo(e.target.value)}
+              />
+              <button onClick={handleOnClick}>Save</button>
+            </span>
+          ) : (
+            <p className="todo-text">{todo}</p>
+          )}
+        </span>
         <p className="owner-text">{owner}</p>
       </span>
       <span className="nav-btn-area">
+        <button
+          id="edit"
+          type="submit"
+          className={isEditing ? "editing" : "edit"}
+        >
+          <span onClick={handleOnClick} className="material-symbols-outlined">
+            edit
+          </span>
+        </button>
         <button id="delete" onClick={() => handleDelete(id)}>
           <span className="material-symbols-outlined">delete</span>
         </button>

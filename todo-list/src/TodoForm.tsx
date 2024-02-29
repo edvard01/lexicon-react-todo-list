@@ -77,6 +77,20 @@ export function TodoForm(): JSX.Element {
     }
   }
 
+  function changeTodo(newTodo: string, id: number) {
+    const newArray: IListItem[] = [...myArray];
+    for (let i = 0; i < newArray.length; i++) {
+      if (newArray[i].id === id) {
+        console.log("meow found");
+        newArray[i].text = newTodo;
+        setMyArray(newArray);
+        return;
+      }
+    }
+
+    return;
+  }
+
   return (
     <>
       <div className="form-container">
@@ -109,6 +123,7 @@ export function TodoForm(): JSX.Element {
             listContent={myArray}
             moveListItem={moveListItem}
             deleteListItem={deleteListItem}
+            changeTodo={changeTodo}
           />
         ) : (
           <p></p>

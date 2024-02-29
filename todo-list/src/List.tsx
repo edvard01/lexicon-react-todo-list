@@ -5,6 +5,7 @@ interface IList {
   listContent: IListItem[];
   moveListItem: (id: number, move: string) => void;
   deleteListItem: (id: number) => void;
+  changeTodo: (newTodo: string, id: number) => void;
 }
 
 interface IListItem {
@@ -17,6 +18,7 @@ export function List({
   listContent,
   moveListItem,
   deleteListItem,
+  changeTodo,
 }: IList): JSX.Element {
   return (
     <>
@@ -30,6 +32,7 @@ export function List({
                 id={item.id}
                 moveListItem={moveListItem}
                 deleteListItem={deleteListItem}
+                changeTodo={changeTodo}
               />
             </li>
           ))}
