@@ -25,16 +25,15 @@ export function List({
       <div className="list">
         <ul>
           {listContent.map((item, index) => (
-            <li key={index}>
-              <ListItem
-                todo={item.text}
-                owner={item.author}
-                id={item.id}
-                moveListItem={moveListItem}
-                deleteListItem={deleteListItem}
-                changeTodo={changeTodo}
-              />
-            </li>
+            <ListItem
+              key={index}
+              todo={item.text}
+              owner={item.author}
+              id={item.id}
+              moveListItem={moveListItem}
+              deleteListItem={deleteListItem}
+              changeTodo={changeTodo}
+            />
           ))}
         </ul>
       </div>

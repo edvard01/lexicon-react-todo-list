@@ -11,10 +11,14 @@
   display: flex;
   justify-content: space-between;
 
-  background-color: rgb(19, 132, 150);
+  background-color: grey;
   padding: 15px;
   border-radius: 16px;
   box-shadow: 0 1px 3px black;
+}
+
+.list ul .done {
+  background-color: rgb(33, 136, 56);
 }
 
 .list ul li .text-area {
@@ -70,6 +74,16 @@
 .list ul li .nav-btn-area #delete {
   padding: 5px;
   background-color: red;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+}
+
+.list ul li .nav-btn-area #done {
+  padding: 5px;
+  background-color: green;
   border: none;
   border-radius: 5px;
   color: white;

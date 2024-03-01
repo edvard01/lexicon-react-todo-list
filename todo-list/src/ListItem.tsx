@@ -19,6 +19,7 @@ export function ListItem({
 }: IListItem): JSX.Element {
   const [isEditing, setEditing] = useState(false);
   const [text, setTodo] = useState(todo);
+  const [isDone, setDone] = useState(false);
 
   const handleOnClick = () => {
     if (isEditing) {
@@ -41,53 +42,63 @@ export function ListItem({
   };
   return (
     <>
-      <span className="text-area">
-        <span>
-          {isEditing ? (
-            <span>
-              <input
-                type="text"
-                value={text}
-                onChange={(e) => setTodo(e.target.value)}
-              />
-              <button onClick={handleOnClick}>Save</button>
-            </span>
-          ) : (
-            <p className="todo-text">{todo}</p>
-          )}
-        </span>
-        <p className="owner-text">{owner}</p>
-      </span>
-      <span className="nav-btn-area">
-        <button
-          id="edit"
-          type="submit"
-          className={isEditing ? "editing" : "edit"}
-        >
-          <span onClick={handleOnClick} className="material-symbols-outlined">
-            edit
+      <li className={isDone ? "done" : ""}>
+        <span className="text-area">
+          <span>
+            {isEditing ? (
+              <span>
+                <input
+                  type="text"
+                  value={text}
+                  onChange={(e) => setTodo(e.target.value)}
+                />
+                <button onClick={handleOnClick}>Save</button>
+              </span>
+            ) : (
+              <p className="todo-text">{todo}</p>
+            )}
           </span>
-        </button>
-        <button id="delete" onClick={() => handleDelete(id)}>
-          <span className="material-symbols-outlined">delete</span>
-        </button>
-        <span className="direction-btns">
-          <button
-            id="up"
-            className="material-symbols-outlined"
-            onClick={() => handleMoveItemClick("up")}
-          >
-            expand_less
-          </button>
-          <button
-            id="down"
-            className="material-symbols-outlined"
-            onClick={() => handleMoveItemClick("down")}
-          >
-            expand_more
-          </button>
+          <p className="owner-text">{owner}</p>
         </span>
-      </span>
+        <span className="nav-btn-area">
+          <button
+            type="submit"
+            id="done"
+            className="done"
+            onClick={() => setDone((preVal) => !preVal)}
+          >
+            <span className="material-symbols-outlined">check_circle</span>
+          </button>
+          <button
+            id="edit"
+            type="submit"
+            className={isEditing ? "editing" : "edit"}
+          >
+            <span onClick={handleOnClick} className="material-symbols-outlined">
+              edit
+            </span>
+          </button>
+          <button id="delete" onClick={() => handleDelete(id)}>
+            <span className="material-symbols-outlined">delete</span>
+          </button>
+          <span className="direction-btns">
+            <button
+              id="up"
+              className="material-symbols-outlined"
+              onClick={() => handleMoveItemClick("up")}
+            >
+              expand_less
+            </button>
+            <button
+              id="down"
+              className="material-symbols-outlined"
+              onClick={() => handleMoveItemClick("down")}
+            >
+              expand_more
+            </button>
+          </span>
+        </span>
+      </li>
     </>
   );
 }
