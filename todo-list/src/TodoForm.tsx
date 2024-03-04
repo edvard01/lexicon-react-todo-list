@@ -6,6 +6,7 @@ interface IListItem {
   id: number;
   text: string;
   author: string;
+  done: boolean;
 }
 
 export function TodoForm(): JSX.Element {
@@ -19,7 +20,7 @@ export function TodoForm(): JSX.Element {
     e.preventDefault();
     setMyArray((prevArray) => [
       ...prevArray,
-      { id: id, text: todo, author: owner },
+      { id: id, text: todo, author: owner, done: false },
     ]);
     updateId(id + 1);
   }
@@ -91,6 +92,20 @@ export function TodoForm(): JSX.Element {
     return;
   }
 
+  function setDone(id: number) {
+    const newArray: IListItem[] = [...myArray];
+    for (let i = 0; i < newArray.length; i++) {
+      if (newArray[i].id === id) {
+        console.log("meow found");
+        newArray[i].done = true;
+        setMyArray(newArray);
+        return;
+      }
+    }
+
+    return;
+  }
+
   return (
     <>
       <div className="form-container">
@@ -124,6 +139,7 @@ export function TodoForm(): JSX.Element {
             moveListItem={moveListItem}
             deleteListItem={deleteListItem}
             changeTodo={changeTodo}
+            setDone={setDone}
           />
         ) : (
           <p></p>

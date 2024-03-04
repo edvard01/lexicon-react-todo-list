@@ -6,12 +6,14 @@ interface IList {
   moveListItem: (id: number, move: string) => void;
   deleteListItem: (id: number) => void;
   changeTodo: (newTodo: string, id: number) => void;
+  setDone: (id: number) => void;
 }
 
 interface IListItem {
   id: number;
   text: string;
   author: string;
+  done: boolean;
 }
 
 export function List({
@@ -19,6 +21,7 @@ export function List({
   moveListItem,
   deleteListItem,
   changeTodo,
+  setDone,
 }: IList): JSX.Element {
   return (
     <>
@@ -30,9 +33,11 @@ export function List({
               todo={item.text}
               owner={item.author}
               id={item.id}
+              done={item.done}
               moveListItem={moveListItem}
               deleteListItem={deleteListItem}
               changeTodo={changeTodo}
+              setDone={setDone}
             />
           ))}
         </ul>

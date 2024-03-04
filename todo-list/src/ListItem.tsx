@@ -4,22 +4,25 @@ interface IListItem {
   todo: string;
   owner: string;
   id: number;
+  done: boolean;
   moveListItem: (id: number, move: string) => void;
   deleteListItem: (id: number) => void;
   changeTodo: (newTodo: string, id: number) => void;
+  setDone: (id: number) => void;
 }
 
 export function ListItem({
   todo,
   owner,
   id,
+  done,
   moveListItem,
   deleteListItem,
   changeTodo,
+  setDone,
 }: IListItem): JSX.Element {
   const [isEditing, setEditing] = useState(false);
   const [text, setTodo] = useState(todo);
-  const [isDone, setDone] = useState(false);
 
   const handleOnClick = () => {
     if (isEditing) {
@@ -42,7 +45,7 @@ export function ListItem({
   };
   return (
     <>
-      <li className={isDone ? "done" : ""}>
+      <li className={done ? "done" : ""}>
         <span className="text-area">
           <span>
             {isEditing ? (
@@ -65,7 +68,7 @@ export function ListItem({
             type="submit"
             id="done"
             className="done"
-            onClick={() => setDone((preVal) => !preVal)}
+            onClick={() => setDone(id)}
           >
             <span className="material-symbols-outlined">check_circle</span>
           </button>
