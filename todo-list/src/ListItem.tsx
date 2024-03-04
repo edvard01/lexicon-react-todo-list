@@ -26,7 +26,6 @@ export function ListItem({
 
   const handleOnClick = () => {
     if (isEditing) {
-      console.log("meow handleonclick");
       changeTodo(text, id);
     } else {
       setTodo(todo);
@@ -41,7 +40,6 @@ export function ListItem({
 
   const handleDelete = (id: number) => {
     deleteListItem(id);
-    console.log(id);
   };
   return (
     <>

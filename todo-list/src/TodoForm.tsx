@@ -59,7 +59,6 @@ export function TodoForm(): JSX.Element {
   }
 
   function deleteListItem(id: number) {
-    console.log("TodoForm id", id);
     let counter: number = 0;
     let index: number = -1;
     myArray.forEach((element) => {
@@ -74,7 +73,7 @@ export function TodoForm(): JSX.Element {
       newArray.splice(index, 1);
       setMyArray(newArray);
     } else {
-      console.log("Index cant be found");
+      return;
     }
   }
 
@@ -82,7 +81,6 @@ export function TodoForm(): JSX.Element {
     const newArray: IListItem[] = [...myArray];
     for (let i = 0; i < newArray.length; i++) {
       if (newArray[i].id === id) {
-        console.log("meow found");
         newArray[i].text = newTodo;
         setMyArray(newArray);
         return;
@@ -96,7 +94,6 @@ export function TodoForm(): JSX.Element {
     const newArray: IListItem[] = [...myArray];
     for (let i = 0; i < newArray.length; i++) {
       if (newArray[i].id === id) {
-        console.log("meow found");
         if (newArray[i].done) {
           newArray[i].done = false;
         } else {
