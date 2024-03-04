@@ -97,7 +97,11 @@ export function TodoForm(): JSX.Element {
     for (let i = 0; i < newArray.length; i++) {
       if (newArray[i].id === id) {
         console.log("meow found");
-        newArray[i].done = true;
+        if (newArray[i].done) {
+          newArray[i].done = false;
+        } else {
+          newArray[i].done = true;
+        }
         setMyArray(newArray);
         return;
       }
