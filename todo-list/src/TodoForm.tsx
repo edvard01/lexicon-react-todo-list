@@ -7,6 +7,7 @@ interface IListItem {
   text: string;
   author: string;
   done: boolean;
+  date: string;
 }
 
 export function TodoForm(): JSX.Element {
@@ -18,9 +19,16 @@ export function TodoForm(): JSX.Element {
 
   function handleSubmit(e: FormEvent) {
     e.preventDefault();
+    let currentTime = getCurrentTime();
     setMyArray((prevArray) => [
       ...prevArray,
-      { id: id, text: todo, author: owner, done: false },
+      {
+        id: id,
+        text: todo,
+        author: owner,
+        done: false,
+        date: currentTime,
+      },
     ]);
     updateId(id + 1);
   }
@@ -105,6 +113,17 @@ export function TodoForm(): JSX.Element {
     }
 
     return;
+  }
+
+  function getCurrentTime(): string {
+    let currentTime = new Date();
+    const time = currentTime.toLocaleDateString("sv-SE", {
+      hour12: false,
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+
+    return `${time}`;
   }
 
   return (

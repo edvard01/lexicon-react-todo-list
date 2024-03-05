@@ -14,6 +14,7 @@ interface IListItem {
   text: string;
   author: string;
   done: boolean;
+  date: string;
 }
 
 export function List({
@@ -34,6 +35,7 @@ export function List({
               owner={item.author}
               id={item.id}
               done={item.done}
+              date={item.date}
               moveListItem={moveListItem}
               deleteListItem={deleteListItem}
               changeTodo={changeTodo}

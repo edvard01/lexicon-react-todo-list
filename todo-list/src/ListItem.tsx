@@ -5,6 +5,7 @@ interface IListItem {
   owner: string;
   id: number;
   done: boolean;
+  date: string;
   moveListItem: (id: number, move: string) => void;
   deleteListItem: (id: number) => void;
   changeTodo: (newTodo: string, id: number) => void;
@@ -16,6 +17,7 @@ export function ListItem({
   owner,
   id,
   done,
+  date,
   moveListItem,
   deleteListItem,
   changeTodo,
@@ -59,7 +61,10 @@ export function ListItem({
               <p className="todo-text">{todo}</p>
             )}
           </span>
-          <p className="owner-text">{owner}</p>
+
+          <p className="owner-text">
+            {owner} - {date}
+          </p>
         </span>
         <span className="nav-btn-area">
           <button
