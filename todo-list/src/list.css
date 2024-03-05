@@ -103,13 +103,13 @@
   padding: 0;
   border: none;
 
-  background-color: green;
+  background-color: #9fa6b2;
   font-size: 22px;
   cursor: pointer;
 }
 
 .list ul li .nav-btn-area .direction-btns button:hover {
-  background-color: darkgreen;
+  background-color: #5a6268;
 }
 
 .list ul li .nav-btn-area .direction-btns #up {
